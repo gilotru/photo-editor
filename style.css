@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,600;1,700&family=Ubuntu:wght@400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: gray;
+}
+.container{
+    width: 850px;
+    padding: 25px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 10px 20px black;
+}
+.container.disable :where(.editor-panel, .reset-filter, .save-img){
+    opacity: 0.6;
+    pointer-events: none;
+}
+.container h2{
+    font-size: 25pxpx;
+    font-weight: 500;
+}
+.container .wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.container .control{
+    display: flex;
+    justify-content: space-between;
+}
+.wrapper .editor-panel{
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.slider .filter-info{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.slider input{
+    width: 100%;
+}
+.slider, .rotate, .control{
+    margin-top: 20px;
+}
+.editor-panel .filter button{
+    background: none;
+    border-color: hsl(204, 10%, 80%);
+    width: calc(100% / 2 - 4px);
+}
+.editor-panel .filter button:hover,
+.rotate .option button:hover{
+    cursor: pointer;
+    color: white;
+    background: hsl(204, 100%, 80%);
+}
+.editor-panels img{
+    max-width: 490px;
+    max-height: 335px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.rotate .option button{
+    background: none;
+    border-color: hsl(204, 10%, 80%);
+    width: calc(100% / 4 - 4px);
+}
+.control button{
+    font-weight: 600;
+    text-transform: uppercase;
+    height: 35px;
+    padding: 0 8px;
+}
+.save-img{
+    color: white;
+    border: hsl(204, 100%, 50%);
+    background: hsl(204, 100%, 50%);
+    transform: translate(all 0.3s ease);
+}
+.save-img:hover{
+    color: black;
+    cursor: pointer;
+    border: 1px dotted gray;
+    background: hsl(204, 100%, 100%);
+}
