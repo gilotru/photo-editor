@@ -13,9 +13,8 @@ let brightness = 100, saturation = 100, inversion = 0, grayscale = 0;
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
 const applyFilters = () =>{
-    rotateImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}) scale(${flipVertical})`;
+    previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
-    
 };
 
 const loadImage = () =>{
@@ -23,8 +22,8 @@ const loadImage = () =>{
     if(!file) return; // if user selected none
     previewImg.src = URL.createObjectURL(file); //passing file url as preview img src
     previewImg.addEventListener("load", () => {
+        resetImg.click();
         document.querySelector(".container").classList.remove("disable");
-        resetFilter.click();
     });
 };
 
@@ -40,15 +39,15 @@ filterOptions.forEach(option => {
             filterValue.innerText = `${brightness}%`;
         }else if(option.id === "saturation"){
             filterSlider.max = "200";
-            filterSlider.value = `${saturation}%`;
+            filterSlider.value = saturation;
             filterValue.innerText = `${saturation}%`;
         }else if(option.id === "inversion"){
             filterSlider.max = "100";
-            filterSlider.value = `${inversion}%`;
+            filterSlider.value = inversion;
             filterValue.innerText = `${inversion}%`;
         }else {
             filterSlider.max = "100";
-            filterSlider.value = `${grayscale}%`;
+            filterSlider.value = grayscale;
             filterValue.innerText = `${grayscale}%`;
         }
     });
@@ -78,7 +77,7 @@ rotateImg.forEach(option =>{
             rotate +=90; // if clicked btn is right rotate, increment rotate value by +90
         }else if(option.id === "horizontal"){
             // flip horisontal where value is 1 set to negative 1 else 1
-            flipHorizontal = flipHorizontal === 1 ? -1 : 1;
+            flipHorizontal = flipHorizontal === 1 ?  -1 : 1;
         }else{
             flipVertical = flipVertical === 1 ? -1 : 1;
         }
@@ -115,6 +114,6 @@ const downloadImg = () =>{
 
 saveImg.addEventListener("click", downloadImg);
 fileInput.addEventListener("change", loadImage);
-resetImg.addEventListener("input", resetFilter);
+resetImg.addEventListener("click", resetFilter);
 filterSlider.addEventListener("click", updaterFitlter);
 choiceFile.addEventListener("click", () => fileInput.click());
